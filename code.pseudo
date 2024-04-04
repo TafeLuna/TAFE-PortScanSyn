@@ -1,0 +1,19 @@
+import nmap
+
+host = in ip
+port min = 1
+port max = 65535
+
+func scan_ports:
+	return (nmap scan port min to port max)
+	
+func is ip open:
+	ping ip timeout 5 retry 5
+
+if host_alive(ip):
+	result = ""
+	ports = scan_ports(ip)
+	if has open ports:
+		enumarate
+		result = enumarate results
+	return results
