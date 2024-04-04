@@ -15,13 +15,14 @@ def scan_ports():
     # Using a SYN scan instead of TCP for speed
     return nmap3.NmapScanTechniques().nmap_syn_scan(target=TARGET,args="-p{min}-{max}".format(min=PORT_MIN,max=PORT_MAX))
 
+open_port_list = [] 
+
 if(is_host_alive()):
     mapper = scan_ports()
-    print(mapper)
-
-    open_port_list = [] 
     
     for entry in mapper[TARGET]["ports"]:
         # Function / Script injection if needed 
         port = entry["portid"]
         open_port_list.append(port)
+
+print(open_port_list)
